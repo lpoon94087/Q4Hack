@@ -1,0 +1,587 @@
+/* ------------------------------------------
+PURE CSS SPEECH BUBBLES
+by Nicolas Gallagher
+- http://nicolasgallagher.com/pure-css-speech-bubbles/
+
+http://nicolasgallagher.com
+http://twitter.com/necolas
+
+Created: 02 March 2010
+Version: 1.2 (03 March 2011)
+
+Dual licensed under MIT and GNU GPLv2 © Nicolas Gallagher 
+------------------------------------------ */
+
+/* NOTE: Some declarations use longhand notation so that it can be clearly
+explained what specific properties or values do and what their relationship
+is to other properties or values in creating the effect */
+
+/* ============================================================================================================================
+== GENERAL STYLES
+** ============================================================================================================================ */
+
+body {
+    padding:0; 
+    margin:0; 
+    font:1em/1.4 Cambria, Georgia, sans-serif; 
+    color:#333; 
+    background:#fff;
+}
+
+a:link,
+a:visited {
+    border-bottom:1px solid #c55500; 
+    text-decoration:none;
+    color:#c55500; 
+}
+
+a:visited {
+    border-bottom:1px solid #730800; 
+    color:#730800;
+}
+
+a:hover,
+a:focus,
+a:active {
+    border:0; 
+    color:#fff; 
+    background:#c55500;
+}
+
+a:visited:hover,
+a:visited:focus,
+a:visited:active {
+    color:#fff; 
+    background:#730800;
+}
+
+#container {
+    width:600px; 
+    padding:0 0 50px; 
+    margin:0 auto;
+}
+
+h1 {
+    margin:1em 0 0; 
+    font-size:2.5em; 
+    font-weight:normal; 
+    line-height:1.2; 
+    text-align:center;
+}
+
+h2 {
+    margin:0.5em 0 1.5em; 
+    font-size:1.25em; 
+    font-weight:normal; 
+    font-style:italic; 
+    text-align:center;
+}
+
+p {
+    margin:1em 0;
+}
+
+.content h2 {
+    margin:2em 0 0.75em; 
+    font-size:2em; 
+    font-weight:bold; 
+    font-style:normal; 
+    text-align:left;
+}
+
+blockquote {
+    margin:1em 0;
+}
+
+blockquote p {
+    margin:0; 
+    font-size:2em;
+}
+
+.follow {
+    clear:both; 
+    margin-top:2em; 
+    font-size:1.125em;
+}
+
+.follow span {
+    font-weight:bold;
+}
+
+
+/* 
+ Should you want to set a background colour on a containing element
+ certain types of bubble effect may require you to include these 
+ style declarations.
+ */
+.content {
+    position:relative;
+    z-index:1;
+}
+
+
+/* ============================================================================================================================
+== BUBBLE WITH AN ISOCELES TRIANGLE
+** ============================================================================================================================ */
+
+/* THE SPEECH BUBBLE
+------------------------------------------------------------------------------------------------------------------------------- */
+
+.bubble-1 {
+	position:relative;
+	padding:15px;
+	margin:1em 0 3em;
+	color:#000;
+	background:#f3961c; /* default background for browsers without gradient support */
+	/* css3 */
+	background:-webkit-gradient(linear, 0 0, 0 100%, from(#f9d835), to(#f3961c));
+	background:-moz-linear-gradient(#f9d835, #f3961c);
+	background:-o-linear-gradient(#f9d835, #f3961c);
+	background:linear-gradient(#f9d835, #f3961c);
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+}
+
+/* display of quote author (alternatively use a class on the element following the blockquote) */
+.bubble-1 + p {margin:-30px 10px 30px 50px; text-align:left; font-style:italic;}
+
+/* Variant 11 : color #c5def0  #75B4E0 */
+.bubble-11 {
+	position:relative;
+	padding:15px;
+	margin:1em 0 3em;
+	color:#000;
+	background:#c5def0; /* default background for browsers without gradient support */
+	/* css3 */
+	background:-webkit-gradient(linear, 0 0, 0 100%, from(#75B4E0), to(#c5def0));
+	background:-moz-linear-gradient(#75B4E0, #c5def0);
+	background:-o-linear-gradient(#75B4E0, #c5def0);
+	background:linear-gradient(#75B4E0, #c5def0);
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+}
+/* display of quote author (alternatively use a class on the element following the blockquote) */
+.bubble-11 + p {margin:-30px 10px 30px 50px; text-align:left; font-style:italic;}
+
+/* Variant 12 : color #E8E123  #A3F573 */
+.bubble-12 {
+	position:relative;
+	padding:15px;
+	margin:1em 0 3em;
+	color:#000;
+	background:#c5def0; /* default background for browsers without gradient support */
+	/* css3 */
+	background:-webkit-gradient(linear, 0 0, 0 100%, from(#A3F573), to(#E8E123));
+	background:-moz-linear-gradient(#A3F573, #E8E123);
+	background:-o-linear-gradient(#A3F573, #E8E123);
+	background:linear-gradient(#A3F573, #E8E123);
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+}
+/* display of quote author (alternatively use a class on the element following the blockquote) */
+.bubble-12 + p {margin:-30px 10px 30px 50px; text-align:left; font-style:italic;}
+
+/* THE TRIANGLE
+------------------------------------------------------------------------------------------------------------------------------- */
+
+/* creates triangle */
+.bubble-1:after {
+	content:"";
+	position:absolute;
+	bottom:-15px; /* value = - border-top-width - border-bottom-width */
+	left:50px; /* controls horizontal position */
+	border-width:15px 15px 0; /* vary these values to change the angle of the vertex */
+	border-style:solid;
+	border-color:#f3961c transparent;
+    /* reduce the damage in FF3.0 */
+    display:block; 
+    width:0;
+}
+
+/* Variant 1 : color #c5def0 */
+.bubble-11:after {
+	content:"";
+	position:absolute;
+	bottom:-15px; /* value = - border-top-width - border-bottom-width */
+	left:50px; /* controls horizontal position */
+	border-width:15px 15px 0; /* vary these values to change the angle of the vertex */
+	border-style:solid;
+	border-color:#c5def0 transparent;
+    /* reduce the damage in FF3.0 */
+    display:block; 
+    width:0;
+}
+
+/* Variant 2 : color #E8E123 */
+.bubble-12:after {
+	content:"";
+	position:absolute;
+	bottom:-15px; /* value = - border-top-width - border-bottom-width */
+	left:50px; /* controls horizontal position */
+	border-width:15px 15px 0; /* vary these values to change the angle of the vertex */
+	border-style:solid;
+	border-color:#E8E123 transparent;
+    /* reduce the damage in FF3.0 */
+    display:block; 
+    width:0;
+}
+
+/* ============================================================================================================================
+== BUBBLE WITH A RIGHT-ANGLED TRIANGLE
+** ============================================================================================================================ */
+
+/* THE SPEECH BUBBLE
+------------------------------------------------------------------------------------------------------------------------------- */
+
+.bubble-2 {
+	position:relative;
+	padding:15px;
+	margin:1em 0 3em;
+	color:#fff;
+	background:#075698; /* default background for browsers without gradient support */
+	/* css3 */
+	background:-webkit-gradient(linear, 0 0, 0 100%, from(#2e88c4), to(#075698));
+	background:-moz-linear-gradient(#2e88c4, #075698);
+	background:-o-linear-gradient(#2e88c4, #075698);
+	background:linear-gradient(#2e88c4, #075698);
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+}
+/* display of quote author (alternatively use a class on the element following the blockquote) */
+.bubble-2 + p {margin:-30px 10px 30px 50px; text-align:left; font-style:italic;}
+
+/* Variant 21 : color #E11000  #E55400 */
+.bubble-21 {
+	position:relative;
+	padding:15px;
+	margin:1em 0 3em;
+	color:#fff;
+	background:#E55400; /* default background for browsers without gradient support */
+	/* css3 */
+	background:-webkit-gradient(linear, 0 0, 0 100%, from(#E11000), to(#E55400));
+	background:-moz-linear-gradient(#E11000, #E55400);
+	background:-o-linear-gradient(#E11000, #E55400);
+	background:linear-gradient(#E11000, #E55400);
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+}
+.bubble-21 + p {margin:-30px 10px 30px 50px; text-align:left; font-style:italic;}
+
+/* Variant 22 : color #AB0FA5  #b513af */
+.bubble-22 {
+	position:relative;
+	padding:15px;
+	margin:1em 0 3em;
+	color:#fff;
+	background:#b513af; /* default background for browsers without gradient support */
+	/* css3 */
+	background:-webkit-gradient(linear, 0 0, 0 100%, from(#AB0FA5), to(#b513af));
+	background:-moz-linear-gradient(#AB0FA5, #b513af);
+	background:-o-linear-gradient(#AB0FA5, #b513af);
+	background:linear-gradient(#AB0FA5, #b513af);
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+}
+.bubble-22 + p {margin:-30px 10px 30px 50px; text-align:left; font-style:italic;}
+
+/* THE TRIANGLE
+------------------------------------------------------------------------------------------------------------------------------- */
+
+.bubble-2:after {
+	content:"";
+	position:absolute;
+	bottom:-20px; /* value = - border-top-width - border-bottom-width */
+	left:50px; /* controls horizontal position */
+	border-width:20px 0 0 20px; /* vary these values to change the angle of the vertex */
+	border-style:solid;
+	border-color:#075698 transparent; 
+    /* reduce the damage in FF3.0 */
+    display:block; 
+    width:0;
+}
+
+/* Variant 21 : color #E55400 */
+.bubble-21:after {
+	content:"";
+	position:absolute;
+	bottom:-20px; /* value = - border-top-width - border-bottom-width */
+	left:50px; /* controls horizontal position */
+	border-width:20px 0 0 20px; /* vary these values to change the angle of the vertex */
+	border-style:solid;
+	border-color:#E55400 transparent; 
+    /* reduce the damage in FF3.0 */
+    display:block; 
+    width:0;
+}
+
+/* Variant 22 : color #b513af */
+.bubble-22:after {
+	content:"";
+	position:absolute;
+	bottom:-20px; /* value = - border-top-width - border-bottom-width */
+	left:50px; /* controls horizontal position */
+	border-width:20px 0 0 20px; /* vary these values to change the angle of the vertex */
+	border-style:solid;
+	border-color:#b513af transparent; 
+    /* reduce the damage in FF3.0 */
+    display:block; 
+    width:0;
+}
+
+/* ============================================================================================================================
+== BUBBLE WITH AN OBTUSE TRIANGLE
+** ============================================================================================================================ */
+
+/* THE SPEECH BUBBLE
+------------------------------------------------------------------------------------------------------------------------------- */
+
+.bubble-3 {
+	position:relative;
+	padding:15px;
+	margin:1em 0 3em;
+	color:#fff;
+	background:#441e2b;
+	/* css3 */
+	background:-webkit-gradient(linear, 0 0, 0 100%, from(#f04349), to(#441e2b));
+	background:-moz-linear-gradient(#f04349, #441e2b);
+	background:-o-linear-gradient(#f04349, #441e2b);
+	background:linear-gradient(#f04349, #441e2b);
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+}
+/* display of quote author (alternatively use a class on the element following the blockquote) */
+.bubble-3 + p {margin:-30px 10px 30px 50px; text-align:left; font-style:italic;}
+
+/* Variant 31 : color #B8A007 #594E04 */
+.bubble-31 {
+	position:relative;
+	padding:15px;
+	margin:1em 0 3em;
+	color:#fff;
+	background:#594E04;
+	/* css3 */
+	background:-webkit-gradient(linear, 0 0, 0 100%, from(#B8A007), to(#594E04));
+	background:-moz-linear-gradient(#B8A007, #594E04);
+	background:-o-linear-gradient(#B8A007, #594E04);
+	background:linear-gradient(#B8A007, #594E04);
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+}
+/* display of quote author (alternatively use a class on the element following the blockquote) */
+.bubble-31 + p {margin:-30px 10px 30px 50px; text-align:left; font-style:italic;}
+
+/* THE TRIANGLE
+------------------------------------------------------------------------------------------------------------------------------- */
+
+/* creates the wider right-angled triangle */
+.bubble-3:before {
+	content:"";
+	position:absolute;
+	bottom:-20px; /* value = - border-top-width - border-bottom-width */
+	left:60px; /* controls horizontal position */
+	border:0;
+	border-right-width:30px; /* vary this value to change the angle of the vertex */
+	border-bottom-width:20px; /* vary this value to change the height of the triangle. must be equal to the corresponding value in :after */
+	border-style:solid;
+	border-color:transparent #441e2b;
+    /* reduce the damage in FF3.0 */
+    display:block; 
+    width:0;
+}
+
+/* creates the narrower right-angled triangle */
+.bubble-3:after {
+	content:"";
+	position:absolute;
+	bottom:-20px; /* value = - border-top-width - border-bottom-width */
+	left:80px; /* value = (:before's left) + (:before's border-right/left-width)  - (:after's border-right/left-width) */
+	border:0;
+	border-right-width:10px; /* vary this value to change the angle of the vertex */
+	border-bottom-width:20px; /* vary this value to change the height of the triangle. must be equal to the corresponding value in :before */
+	border-style:solid;
+	border-color:transparent #fff;
+    /* reduce the damage in FF3.0 */
+    display:block; 
+    width:0;
+}
+
+/* Variant 31 : color #B8A007  #594E04 */
+
+/* creates the wider right-angled triangle */
+.bubble-31:before {
+	content:"";
+	position:absolute;
+	bottom:-20px; /* value = - border-top-width - border-bottom-width */
+	left:60px; /* controls horizontal position */
+	border:0;
+	border-right-width:30px; /* vary this value to change the angle of the vertex */
+	border-bottom-width:20px; /* vary this value to change the height of the triangle. must be equal to the corresponding value in :after */
+	border-style:solid;
+	border-color:transparent #594E04;
+    /* reduce the damage in FF3.0 */
+    display:block; 
+    width:0;
+}
+
+/* creates the narrower right-angled triangle */
+.bubble-31:after {
+	content:"";
+	position:absolute;
+	bottom:-20px; /* value = - border-top-width - border-bottom-width */
+	left:80px; /* value = (:before's left) + (:before's border-right/left-width)  - (:after's border-right/left-width) */
+	border:0;
+	border-right-width:10px; /* vary this value to change the angle of the vertex */
+	border-bottom-width:20px; /* vary this value to change the height of the triangle. must be equal to the corresponding value in :before */
+	border-style:solid;
+	border-color:transparent #fff;
+    /* reduce the damage in FF3.0 */
+    display:block; 
+    width:0;
+}
+
+/* ============================================================================================================================
+== BUBBLE WITH A BORDER AND TRIANGLE
+** ============================================================================================================================ */
+
+/* THE SPEECH BUBBLE
+------------------------------------------------------------------------------------------------------------------------------- */
+
+.bubble-4 {
+	position:relative;
+	padding:15px;
+	margin:1em 0 3em;
+	border:5px solid #5a8f00;
+	color:#333;
+	background:#fff;
+	/* css3 */
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+}
+/* display of quote author (alternatively use a class on the element following the blockquote) */
+.bubble-4 + p {margin:-30px 10px 30px 50px; text-align:left; font-style:italic;}
+
+/* Variant 41 : color #000 */
+.bubble-41 {
+	position:relative;
+	padding:15px;
+	margin:1em 0 3em;
+	border:5px solid #000;
+	color:#000;
+	background:#fff;
+	/* css3 */
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+}
+/* display of quote author (alternatively use a class on the element following the blockquote) */
+.bubble-41 + p {margin:-30px 10px 30px 50px; text-align:left; font-style:italic;}
+
+/* Variant 42 : color #461DC2 */
+.bubble-42 {
+	position:relative;
+	padding:15px;
+	margin:1em 0 3em;
+	border:5px solid #461DC2;
+	color:#000;
+	background:#fff;
+	/* css3 */
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+}
+/* display of quote author (alternatively use a class on the element following the blockquote) */
+.bubble-42 + p {margin:-30px 10px 30px 50px; text-align:left; font-style:italic;}
+
+/* THE TRIANGLE
+------------------------------------------------------------------------------------------------------------------------------- */
+
+.bubble-4:before {
+	content:"";
+	position:absolute;
+	bottom:-20px; /* value = - border-top-width - border-bottom-width */
+	left:40px; /* controls horizontal position */
+    border-width:20px 20px 0;
+	border-style:solid;
+    border-color:#5a8f00 transparent;
+    /* reduce the damage in FF3.0 */
+    display:block; 
+    width:0;
+}
+
+/* creates the smaller  triangle */
+.bubble-4:after {
+	content:"";
+	position:absolute;
+	bottom:-13px; /* value = - border-top-width - border-bottom-width */
+	left:47px; /* value = (:before left) + (:before border-left) - (:after border-left) */
+	border-width:13px 13px 0;
+	border-style:solid;
+	border-color:#fff transparent;
+    /* reduce the damage in FF3.0 */
+    display:block; 
+    width:0;
+}
+
+/* Variant 41 : color #000 */
+.bubble-41:before {
+	content:"";
+	position:absolute;
+	bottom:-20px; /* value = - border-top-width - border-bottom-width */
+	left:40px; /* controls horizontal position */
+    border-width:20px 20px 0;
+	border-style:solid;
+    border-color:#000 transparent;
+    /* reduce the damage in FF3.0 */
+    display:block; 
+    width:0;
+}
+
+/* creates the smaller  triangle */
+.bubble-41:after {
+	content:"";
+	position:absolute;
+	bottom:-13px; /* value = - border-top-width - border-bottom-width */
+	left:47px; /* value = (:before left) + (:before border-left) - (:after border-left) */
+	border-width:13px 13px 0;
+	border-style:solid;
+	border-color:#fff transparent;
+    /* reduce the damage in FF3.0 */
+    display:block; 
+    width:0;
+}
+
+/* Variant 42 : color #461DC2 */
+.bubble-42:before {
+	content:"";
+	position:absolute;
+	bottom:-20px; /* value = - border-top-width - border-bottom-width */
+	left:40px; /* controls horizontal position */
+    border-width:20px 20px 0;
+	border-style:solid;
+    border-color:#461DC2 transparent;
+    /* reduce the damage in FF3.0 */
+    display:block; 
+    width:0;
+}
+/* creates the smaller  triangle */
+.bubble-42:after {
+	content:"";
+	position:absolute;
+	bottom:-13px; /* value = - border-top-width - border-bottom-width */
+	left:47px; /* value = (:before left) + (:before border-left) - (:after border-left) */
+	border-width:13px 13px 0;
+	border-style:solid;
+	border-color:#fff transparent;
+    /* reduce the damage in FF3.0 */
+    display:block; 
+    width:0;
+}
