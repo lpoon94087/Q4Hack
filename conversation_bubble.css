@@ -119,13 +119,32 @@ blockquote p {
     z-index:1;
 }
 
-
+.datetime {
+    color:#111;
+}
 /* ============================================================================================================================
 == BUBBLE WITH AN ISOCELES TRIANGLE
 ** ============================================================================================================================ */
 
 /* THE SPEECH BUBBLE
 ------------------------------------------------------------------------------------------------------------------------------- */
+.bubble-0 {
+	position:relative;
+	padding:15px;
+	margin:1em 0 3em;
+	color:#000;
+	background:#FFE5B4; /* default background for browsers without gradient support */
+	/* css3 */
+	background:-webkit-gradient(linear, 0 0, 0 100%, from(#FFE135), to(#FFE5B4));
+	background:-moz-linear-gradient(#f9d835, #FFE5B4);
+	background:-o-linear-gradient(#f9d835, #FFE5B4);
+	background:linear-gradient(#f9d835, #FFE5B4);
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+}
+/* display of quote author (alternatively use a class on the element following the blockquote) */
+.bubble-0 + p {margin:-30px 10px 30px 50px; text-align:right; font-style:italic;}
 
 .bubble-1 {
 	position:relative;
@@ -186,6 +205,19 @@ blockquote p {
 
 /* THE TRIANGLE
 ------------------------------------------------------------------------------------------------------------------------------- */
+/* creates triangle on right */
+.bubble-0:after {
+	content:"";
+	position:absolute;
+	bottom:-15px; /* value = - border-top-width - border-bottom-width */
+	right:50px; /* controls horizontal position */
+	border-width:15px 15px 0; /* vary these values to change the angle of the vertex */
+	border-style:solid;
+	border-color:#FFE5B4 transparent;
+    /* reduce the damage in FF3.0 */
+    display:block; 
+    width:0;
+}
 
 /* creates triangle */
 .bubble-1:after {
@@ -584,4 +616,141 @@ blockquote p {
     /* reduce the damage in FF3.0 */
     display:block; 
     width:0;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------------
+== ICONS STYLES
+** ---------------------------------------------------------------------------------------------------------------------------- */
+
+ul {
+    padding:0;
+    margin:0;
+}
+
+li {
+    position:relative;
+    z-index:1;
+    overflow:hidden;
+    list-style:none;
+    padding:0;
+    margin:0 0 0.25em;
+}
+
+li a:link,
+li a:visited {
+    display:block;
+    border:0;
+    padding-left:28px;
+    color:#c55500;
+}
+
+li a:hover,
+li a:focus,
+li a:active {
+    color:#730800;
+    background:transparent;
+}
+
+li:before,
+li:after,
+li a:before,
+li a:after {
+    content:"";
+    position:absolute;
+    top:50%;
+    left:0;
+}
+
+li a:before,
+li a:after {
+    margin:-8px 0 0;
+    background:#c55500;
+}
+
+li a:hover:before,
+li a:focus:before,
+li a:active:before {
+    background:#730800;
+}
+
+/* COMMENT
+------------------------------------------------------------------------------------------------------------------------------- */
+
+.comment a:before {
+    width:16px;
+    height:10px;
+    margin-top:-8px;
+    /* css3 */
+    -webkit-border-radius:2px;
+    -moz-border-radius:2px;
+    border-radius:2px;
+}
+
+.comment a:after {
+    left:8px;
+    border:2px solid transparent;
+    border-top-color:#c55500;
+    border-left-color:#c55500;
+    margin-top:2px;
+    background:transparent;
+}
+
+.comment a:hover:after,
+.comment a:focus:after,
+.comment a:active:after {
+    border-top-color:#730800;
+    border-left-color:#730800;
+}
+
+/* EMAIL
+------------------------------------------------------------------------------------------------------------------------------- */
+
+.email:before {
+    z-index:10;
+    left:6px;
+    width:12px;
+    height:12px;
+    border-width:0 1px 1px 0;
+    border-style:solid;
+    border-color:#fff;
+    margin-top:-13px;
+    background:transparent;
+    /* css3 */
+    -webkit-transform:rotate(39deg) skew(-12deg);
+    -moz-transform:rotate(39deg) skew(-12deg);
+    -ms-transform:rotate(39deg) skew(-12deg);
+    -o-transform:rotate(39deg) skew(-12deg);
+    transform:rotate(39deg) skew(-12deg);
+}
+
+.email a:before {
+    left:3px;
+    width:6px;
+    border-width:6px;
+    border-style:solid;
+    border-color:#c55500 #c55500 transparent;
+    margin-top:-7px;
+    background:transparent;
+}
+
+.email a:after {
+    left:4px;
+    border-width:0 8px 9px;
+    border-style:solid;
+    border-color:#c55500 transparent;
+    margin-top:-3px;
+    background:transparent;
+}
+
+.email a:hover:before,
+.email a:focus:before,
+.email a:active:before {
+    border-color:#730800 #730800 transparent;
+    background:transparent;
+}
+
+.email a:hover:after,
+.email a:focus:after,
+.email a:active:after {
+    border-bottom-color:#730800;
 }
