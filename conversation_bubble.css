@@ -27,7 +27,7 @@ body {
     color:#333; 
     background:#fff;
 }
-
+/*
 a:link,
 a:visited {
     border-bottom:1px solid #c55500; 
@@ -54,7 +54,7 @@ a:visited:active {
     color:#fff; 
     background:#730800;
 }
-
+*/
 #container {
     width:600px; 
     padding:0 0 50px; 
@@ -133,18 +133,36 @@ blockquote p {
 	padding:15px;
 	margin:1em 0 3em;
 	color:#000;
-	background:#FFE5B4; /* default background for browsers without gradient support */
+	background:#FAF0BE; /* default background for browsers without gradient support */
 	/* css3 */
-	background:-webkit-gradient(linear, 0 0, 0 100%, from(#FFE135), to(#FFE5B4));
-	background:-moz-linear-gradient(#f9d835, #FFE5B4);
-	background:-o-linear-gradient(#f9d835, #FFE5B4);
-	background:linear-gradient(#f9d835, #FFE5B4);
+	background:-webkit-gradient(linear, 0 0, 0 100%, from(#BDDA57), to(#FAF0BE));
+	background:-moz-linear-gradient(#BDDA57, #FAF0BE);
+	background:-o-linear-gradient(#BDDA57, #FAF0BE);
+	background:linear-gradient(#BDDA57, #FAF0BE);
 	-webkit-border-radius:10px;
 	-moz-border-radius:10px;
 	border-radius:10px;
 }
 /* display of quote author (alternatively use a class on the element following the blockquote) */
 .bubble-0 + p {margin:-30px 10px 30px 50px; text-align:right; font-style:italic;}
+
+.bubble-01 {
+	position:relative;
+	padding:15px;
+	margin:1em 0 3em;
+	color:#000;
+	background:#89CFF0; /* Baby blue default background for browsers without gradient support */
+	/* css3 */
+	background:-webkit-gradient(linear, 0 0, 0 100%, from(#08E8DE), to(#89CFF0));
+	background:-moz-linear-gradient(#08E8DE, #89CFF0);
+	background:-o-linear-gradient(#08E8DE, #89CFF0);
+	background:linear-gradient(#08E8DE, #89CFF0);
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+}
+/* display of quote author (alternatively use a class on the element following the blockquote) */
+.bubble-01 + p {margin:-30px 10px 30px 50px; text-align:right; font-style:italic;}
 
 .bubble-1 {
 	position:relative;
@@ -213,7 +231,21 @@ blockquote p {
 	right:50px; /* controls horizontal position */
 	border-width:15px 15px 0; /* vary these values to change the angle of the vertex */
 	border-style:solid;
-	border-color:#FFE5B4 transparent;
+	border-color:#FAF0BE transparent;
+    /* reduce the damage in FF3.0 */
+    display:block; 
+    width:0;
+}
+
+/* creates triangle on right */
+.bubble-01:after {
+	content:"";
+	position:absolute;
+	bottom:-15px; /* value = - border-top-width - border-bottom-width */
+	right:50px; /* controls horizontal position */
+	border-width:15px 15px 0; /* vary these values to change the angle of the vertex */
+	border-style:solid;
+	border-color:#89CFF0 transparent;
     /* reduce the damage in FF3.0 */
     display:block; 
     width:0;
@@ -410,6 +442,24 @@ blockquote p {
 /* display of quote author (alternatively use a class on the element following the blockquote) */
 .bubble-31 + p {margin:-30px 10px 30px 50px; text-align:left; font-style:italic;}
 
+/* Variant 32 : color #00AFDD #007FFF */
+.bubble-32 {
+	position:relative;
+	padding:15px;
+	margin:1em 0 3em;
+	color:#fff;
+	background:	#007FFF;
+	/* css3 */
+	background:-webkit-gradient(linear, 0 0, 0 100%, from(#00AFDD), to(#007FFF));
+	background:-moz-linear-gradient(#00AFDD, #007FFF);
+	background:-o-linear-gradient(#00AFDD, #007FFF);
+	background:linear-gradient(#00AFDD, #007FFF);
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+}
+/* display of quote author (alternatively use a class on the element following the blockquote) */
+.bubble-32 + p {margin:-30px 10px 30px 50px; text-align:left; font-style:italic;}
 /* THE TRIANGLE
 ------------------------------------------------------------------------------------------------------------------------------- */
 
@@ -479,6 +529,39 @@ blockquote p {
     width:0;
 }
 
+/* Variant 32 : color #00AFDD #007FFF */
+
+/* creates the wider right-angled triangle */
+.bubble-32:before {
+	content:"";
+	position:absolute;
+	bottom:-20px; /* value = - border-top-width - border-bottom-width */
+	left:60px; /* controls horizontal position */
+	border:0;
+	border-right-width:30px; /* vary this value to change the angle of the vertex */
+	border-bottom-width:20px; /* vary this value to change the height of the triangle. must be equal to the corresponding value in :after */
+	border-style:solid;
+	border-color:transparent #007FFF;
+    /* reduce the damage in FF3.0 */
+    display:block; 
+    width:0;
+}
+
+/* creates the narrower right-angled triangle */
+.bubble-32:after {
+	content:"";
+	position:absolute;
+	bottom:-20px; /* value = - border-top-width - border-bottom-width */
+	left:80px; /* value = (:before's left) + (:before's border-right/left-width)  - (:after's border-right/left-width) */
+	border:0;
+	border-right-width:10px; /* vary this value to change the angle of the vertex */
+	border-bottom-width:20px; /* vary this value to change the height of the triangle. must be equal to the corresponding value in :before */
+	border-style:solid;
+	border-color:transparent #fff;
+    /* reduce the damage in FF3.0 */
+    display:block; 
+    width:0;
+}
 /* ============================================================================================================================
 == BUBBLE WITH A BORDER AND TRIANGLE
 ** ============================================================================================================================ */
@@ -522,7 +605,8 @@ blockquote p {
 	position:relative;
 	padding:15px;
 	margin:1em 0 3em;
-	border:5px solid #461DC2;
+	border:2px solid #461DC2;
+	box-shadow: 0 0 5px 5px #461DC2;
 	color:#000;
 	background:#fff;
 	/* css3 */
@@ -532,6 +616,26 @@ blockquote p {
 }
 /* display of quote author (alternatively use a class on the element following the blockquote) */
 .bubble-42 + p {margin:-30px 10px 30px 50px; text-align:left; font-style:italic;}
+
+/* Variant cool : color #66FF00 */
+.bubble-cool {
+	position:relative;
+	padding:15px;
+	margin:1em 0 3em;
+	border:5px solid #66FF00;
+	box-shadow: 0 0 5px 5px #66FF00;
+	color:#000;
+    background-image: url(stardrip_tile_50.gif);
+	background-repeat: repeat;
+	font-family: 'Berkshire Swash', cursive;
+	/*background-position: 15px 100px;*/
+	/* css3 */
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+}
+/* display of quote author (alternatively use a class on the element following the blockquote) */
+.bubble-cool + p {margin:-30px 10px 30px 50px; text-align:left; font-style:italic;}
 
 /* THE TRIANGLE
 ------------------------------------------------------------------------------------------------------------------------------- */
@@ -606,6 +710,35 @@ blockquote p {
 }
 /* creates the smaller  triangle */
 .bubble-42:after {
+	content:"";
+	position:absolute;
+	bottom:-13px; /* value = - border-top-width - border-bottom-width */
+	left:47px; /* value = (:before left) + (:before border-left) - (:after border-left) */
+	border-width:13px 13px 0;
+	border-style:solid;
+	border-color:#fff transparent;
+    /* reduce the damage in FF3.0 */
+    display:block; 
+    width:0;
+}
+
+/* Variant cool : color #66FF00 */
+.bubble-cool:before {
+	content:"";
+	position:absolute;
+	bottom:-20px; /* value = - border-top-width - border-bottom-width */
+	left:40px; /* controls horizontal position */
+    border-width:20px 20px 0;
+	border-style:solid;
+    border-color:#66FF00 transparent;
+    /* reduce the damage in FF3.0 */
+    display:block; 
+    width:0;
+	font:1em/1.4 Cambria, Georgia, sans-serif; 
+}
+
+/* creates the smaller  triangle */
+.bubble-cool:after {
 	content:"";
 	position:absolute;
 	bottom:-13px; /* value = - border-top-width - border-bottom-width */
